@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "migrate": "drizzle-kit generate:pg --schema=./src/lib/db/schema.ts && tsx src/lib/db/migrate.ts",
-    "studio": "drizzle-kit studio"
+    "studio": "drizzle-kit studio",
+    "format": "prettier . --write"
   },
   "dependencies": {
     "@lucia-auth/adapter-postgresql": "^2.0.1",
@@ -20,7 +21,8 @@
     "postgres": "^3.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ulid": "^2.3.0"
+    "ulid": "^2.3.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20.8.7",
@@ -31,6 +33,7 @@
     "eslint": "^8.51.0",
     "eslint-config-next": "13.5.6",
     "postcss": "^8.4.31",
+    "prettier": "3.0.3",
     "tailwindcss": "^3.3.3",
     "tsx": "^3.14.0",
     "typescript": "^5.2.2"
