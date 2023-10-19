@@ -24,6 +24,7 @@ export const POST = async (request: NextRequest) => {
         },
         attributes: {
           username: validatedBody.data.username,
+          display_name: validatedBody.data.displayName,
         },
       });
 

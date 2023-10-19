@@ -30,6 +30,13 @@ const formSchema = z.object({
       message: "Username must be at least 2 characters.",
     })
     .max(32),
+  displayName: z
+    .string()
+    .min(2, {
+      message: "Display name must be at least 2 characters.",
+    })
+    .max(32)
+    .optional(),
   password: z.string().min(8, {
     message: "Password must be at least 8 characters.",
   }),
@@ -40,6 +47,7 @@ export function SignUpForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      displayName: undefined,
       password: "",
     },
   });
@@ -47,7 +55,11 @@ export function SignUpForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     fetch("/api/auth/sign-up", {
       method: "POST",
-      body: JSON.stringify(values),
+      body: JSON.stringify({
+        username: values.username,
+        displayName: values.displayName ?? values.username,
+        password: values.password,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
