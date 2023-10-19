@@ -8,7 +8,7 @@ import type { NextRequest } from "next/server";
 export const POST = async (request: NextRequest) => {
   const schema = z.object({
     username: z.string().min(2).max(32),
-    displayName: z.string().min(2).max(32),
+    displayName: z.string().min(2).max(32).optional(),
     password: z.string().min(8),
   });
   const body = await request.json();
@@ -50,7 +50,7 @@ export const POST = async (request: NextRequest) => {
         },
         {
           status: 400,
-        },
+        }
       );
     }
   } else {
@@ -60,7 +60,7 @@ export const POST = async (request: NextRequest) => {
       },
       {
         status: 400,
-      },
+      }
     );
   }
 };
