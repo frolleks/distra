@@ -1,4 +1,4 @@
-import { pgTable, bigint, varchar } from "drizzle-orm/pg-core";
+import { pgTable, bigint, varchar, text } from "drizzle-orm/pg-core";
 import { ulid } from "ulid";
 
 export const user = pgTable("auth_user", {
@@ -7,6 +7,7 @@ export const user = pgTable("auth_user", {
     .$defaultFn(() => ulid()),
   username: varchar("username", { length: 32 }).unique().notNull(),
   displayName: varchar("display_name", { length: 32 }).notNull(),
+  profilePicture: text("profile_picture"),
 });
 
 export const session = pgTable("user_session", {
