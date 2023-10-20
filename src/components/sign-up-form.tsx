@@ -22,6 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   username: z
@@ -51,6 +52,7 @@ export function SignUpForm() {
       password: "",
     },
   });
+  const router = useRouter();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     fetch("/api/auth/sign-up", {
@@ -64,6 +66,7 @@ export function SignUpForm() {
         "Content-Type": "application/json",
       },
     });
+    router.push("/");
   }
 
   return (
