@@ -1,15 +1,13 @@
 import { SignInForm } from "@/components/sign-in-form";
-import { auth } from "@/lib/auth/lucia";
+import { getSession } from "@/lib/auth/utils";
 
 import * as context from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function SignIn() {
-  const authRequest = auth.handleRequest("GET", context);
-  const cookieSession = await authRequest.validate();
-  const bearerSession = await authRequest.validateBearerToken();
+  const session = await getSession(context);
 
-  if (!cookieSession || bearerSession) {
+  if (!session) {
     return (
       <div className="w-full h-screen flex justify-center items-center">
         <div className="w-96">

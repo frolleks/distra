@@ -1,6 +1,3 @@
-import { auth } from "@/lib/auth/lucia";
-import { db } from "@/lib/db";
-import { eq } from "drizzle-orm";
 import { Menu, Plus } from "lucide-react";
 
 import { Comfortaa } from "next/font/google";
@@ -8,17 +5,15 @@ import * as context from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { getSession, getUser } from "@/lib/auth/utils";
 
 const display = Comfortaa({ subsets: ["latin"] });
 
 async function AuthNav() {
-  const authRequest = auth.handleRequest("GET", context);
-  const session = await authRequest.validate();
+  const session = await getSession(context);
 
   if (session) {
-    const user = await db.query.user.findFirst({
-      where: eq(session.user.userId, session.user.userId),
-    });
+    const user = await getUser(context);
 
     return <p className="text-sm">{user?.username}</p>;
   }
