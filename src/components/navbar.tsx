@@ -11,14 +11,26 @@ import { Button } from "./ui/button";
 
 const display = Comfortaa({ subsets: ["latin"] });
 
-export async function Navbar() {
+async function AuthNav() {
   const authRequest = auth.handleRequest("GET", context);
   const session = await authRequest.validate();
 
-  const user = await db.query.user.findFirst({
-    where: eq(session.user.userId, session.user.userId),
-  });
+  if (session) {
+    const user = await db.query.user.findFirst({
+      where: eq(session.user.userId, session.user.userId),
+    });
 
+    return <p className="text-sm">{user?.username}</p>;
+  }
+
+  return (
+    <Link href="/sign-in">
+      <Button>Sign in</Button>
+    </Link>
+  );
+}
+
+export async function Navbar() {
   return (
     <nav className="sticky top-0 z-10">
       <div className="flex justify-between items-center p-3.5 bg-background border-b">
@@ -45,7 +57,7 @@ export async function Navbar() {
               <Plus />
             </Button>
           </Link>
-          <p className="text-sm">{user?.username}</p>
+          <AuthNav />
         </div>
       </div>
     </nav>
