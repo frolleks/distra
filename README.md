@@ -41,6 +41,12 @@ Then, create a .env file, with the database url inside it.
 DATABASE_URL="postgres://postgres:mydbpassword@localhost:5432/postgres
 ```
 
+Then, migrate the database schema to the database.
+
+```sh
+pnpm migrate
+```
+
 And then, run the development server.
 
 ```sh
