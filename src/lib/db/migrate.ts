@@ -12,6 +12,7 @@ async function migrateDb() {
     migrationsFolder: "./drizzle",
   });
   console.log("Migration finished");
+  process.exit(0);
 }
 
 migrateDb();
