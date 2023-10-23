@@ -49,3 +49,5 @@ pnpm run dev
 
 Happy coding!
 
+When you're done making your changes, open up a pull request in the main repository.
+
