@@ -28,11 +28,11 @@ async function AuthNav() {
 export async function Navbar() {
   return (
     <nav className="sticky top-0 z-10">
-      <div className="flex justify-between items-center p-3.5 bg-background border-b">
+      <div className="flex justify-between items-center p-2 bg-background border-b">
         <div className="flex items-center gap-1.5">
-          <button className="max-sm:hidden hover:bg-accent transition p-1.5 rounded-md">
+          <Button className="max-sm:hidden" variant="ghost" size="icon">
             <Menu size={22} />
-          </button>
+          </Button>
           <Link href="/">
             <div className="flex items-center gap-1">
               <Image
