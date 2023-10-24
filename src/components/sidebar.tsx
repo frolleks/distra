@@ -20,7 +20,7 @@ function SidebarItem({ href, icon, name }: SidebarItemProps) {
 
   return (
     <Link href={href}>
-      <button className="flex gap-x-3 items-center hover:bg-accent w-full p-2 transition rounded-md">
+      <button className="flex gap-x-3 items-center hover:bg-accent w-full py-2 px-3 transition rounded-md">
         <Icon />
         <p className="text-sm">{name}</p>
       </button>
